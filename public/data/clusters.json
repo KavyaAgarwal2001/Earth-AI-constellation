@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Weather forecasting",
+    "x": -58,
+    "y": 43
+  },
+  {
+    "name": "Satellite image segmentation",
+    "x": 20,
+    "y": 48
+  },
+  {
+    "name": "Coastal-change detection",
+    "x": 55,
+    "y": 11
+  },
+  {
+    "name": "Seismic-event classification",
+    "x": -48,
+    "y": -35
+  },
+  {
+    "name": "Physical-model emulation",
+    "x": 2,
+    "y": -12
+  },
+  {
+    "name": "Planetary geomorphology",
+    "x": 52,
+    "y": -43
+  }
+]
