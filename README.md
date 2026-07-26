@@ -1,14 +1,16 @@
-# What Does “AI” Mean in Earth Science?
+# Earth AI Atlas
 
-### An interactive constellation of AI across Earth and planetary research
+### What does “AI” mean in Earth science?
 
 [![Deploy to GitHub Pages](https://github.com/KavyaAgarwal2001/Earth-AI-constellation/actions/workflows/deploy.yml/badge.svg)](https://github.com/KavyaAgarwal2001/Earth-AI-constellation/actions/workflows/deploy.yml)
 
-> **Data release:** the repository currently ships with 1,172 selected OpenAlex papers published from 2015–2026. Labels are generated automatically from titles and abstracts and should be treated as exploratory, not ground truth.
+An open research atlas of how machine learning is actually used across Earth and planetary research—not just how it is described.
 
-> **Screenshot placeholder:** add a capture of the deployed constellation here before launch.
+[Explore the live atlas](https://kavyaagarwal2001.github.io/Earth-AI-constellation/)
 
-**Live site:** `https://kavyaagarwal2001.github.io/Earth-AI-constellation/`
+![Earth AI Atlas interactive OpenAlex constellation](docs/earth-ai-atlas.jpg)
+
+> **Data release 01:** 1,172 selected OpenAlex papers published from 2015–2026. Labels are generated automatically from titles and abstracts and should be treated as exploratory, not ground truth.
 
 ## Research question
 
@@ -25,7 +27,7 @@ This project maps a selected corpus of Earth and planetary science papers by sem
 - Limited cluster labels that stay readable over the map
 - Interactive summary charts with counts and percentages
 - Loading, empty, and error states
-- Responsive dark, scientific visual design
+- Responsive editorial research-atlas design
 - Reproducible OpenAlex dataset with a synthetic fallback generator
 - Fully static GitHub Pages deployment
 
@@ -121,6 +123,14 @@ The real pipeline:
 6. Exports static JSON loaded directly by the browser.
 
 See [methodology.md](methodology.md) for pattern behavior, confidence semantics, layout details, and limitations.
+
+## Citation
+
+If you use this project, cite the repository metadata in [`CITATION.cff`](CITATION.cff). The atlas is designed and built by Kavya Agarwal.
+
+## Acknowledgements
+
+Paper metadata comes from [OpenAlex](https://openalex.org/). The semantic layout uses sentence-transformers and UMAP; the interface uses deck.gl and Recharts.
 
 ## Limitations
 

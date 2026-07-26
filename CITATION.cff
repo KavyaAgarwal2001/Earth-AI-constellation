@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this software or its data visualization, please cite it using this metadata."
+title: "Earth AI Atlas: What Does AI Mean in Earth Science?"
+type: software
+authors:
+  - family-names: Agarwal
+    given-names: Kavya
+repository-code: "https://github.com/KavyaAgarwal2001/Earth-AI-constellation"
+url: "https://kavyaagarwal2001.github.io/Earth-AI-constellation/"
+version: 1.0.0
+date-released: 2026-07-25
+license: MIT
+abstract: >-
+  An open-source interactive semantic atlas of 1,172 selected OpenAlex papers
+  examining how machine learning is used across Earth and planetary science.
+keywords:
+  - Earth science
+  - artificial intelligence
+  - machine learning
+  - data visualization
+  - OpenAlex

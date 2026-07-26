@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { ArrowDown, BookOpen, Filter, Github, Info, Orbit, Sparkles } from 'lucide-react'
+import { ArrowRight, BookOpen, Database, Filter, Github, Info, Orbit } from 'lucide-react'
 import { Constellation } from './components/Constellation'
 import { FilterPanel } from './components/FilterPanel'
 import { Insights } from './components/Insights'
@@ -50,34 +50,41 @@ export default function App() {
   return (
     <>
       <header className="site-header">
-        <a className="brand" href="#top"><Orbit size={20} /><span>EARTH / AI</span></a>
+        <a className="brand" href="#top"><span>EARTH AI ATLAS</span><small>RELEASE 01</small></a>
         <nav>
           <a href="#explore">Explore</a>
           <a href="#insights">Insights</a>
           <a href="#methodology">Methodology</a>
         </nav>
-        <a className="github-link" href="https://github.com/KavyaAgarwal2001/Earth-AI-constellation" target="_blank" rel="noreferrer"><Github size={16} /> View source</a>
+        <a className="github-link" href="https://github.com/KavyaAgarwal2001/Earth-AI-constellation" target="_blank" rel="noreferrer"><Github size={15} /> Source</a>
       </header>
 
       <main id="top">
         <section className="hero">
           <div className="hero-copy">
-            <div className="demo-banner"><Sparkles size={13} /> {summary.demo ? 'Visual demo · synthetic corpus' : `${summary.source ?? 'OpenAlex'} corpus · automatically classified`}</div>
-            <p className="eyebrow">AN INTERACTIVE CONSTELLATION OF RESEARCH</p>
-            <h1>What Does <em>“AI”</em> Mean<br />in Earth Science?</h1>
-            <p className="subtitle">Explore how machine learning is actually used across Earth and planetary research.</p>
-            <div className="hero-primer">
-              <span><b>01</b> Each point is one paper</span>
-              <span><b>02</b> Nearby papers are semantically related</span>
-              <span><b>03</b> Recolor the map to shift perspective</span>
+            <p className="eyebrow">OPEN RESEARCH ATLAS / 2015—2026</p>
+            <h1>What does <em>“AI”</em> mean <span>in Earth science?</span></h1>
+            <p className="subtitle">A semantic map of how machine learning is actually used across Earth and planetary research—not just how it is described.</p>
+            <div className="hero-actions">
+              <a className="primary-action" href="#explore">Explore the papers <ArrowRight size={16} /></a>
+              <a className="text-action" href="#methodology">Read the methodology</a>
             </div>
           </div>
-          <div className="hero-orbit" aria-hidden="true">
-            <div className="orbital-ring ring-one"><i /><i /><i /></div>
-            <div className="orbital-ring ring-two"><i /><i /></div>
-            <div className="planet"><span>{summary.paperCount.toLocaleString()}</span><small>{summary.demo ? 'DEMO' : 'REAL'}<br />PAPERS</small></div>
+          <aside className="data-ledger">
+            <div className="ledger-heading"><Database size={15} /><span>DATA RELEASE</span><b>{summary.generatedAt}</b></div>
+            <dl>
+              <div><dt>Papers</dt><dd>{summary.paperCount.toLocaleString()}</dd></div>
+              <div><dt>Domains</dt><dd>5</dd></div>
+              <div><dt>Clusters</dt><dd>{clusters.length}</dd></div>
+              <div><dt>Source</dt><dd>{summary.source ?? 'OpenAlex'}</dd></div>
+            </dl>
+            <p>Selected corpus. Automatic labels remain visible as evidence, uncertainty, and “unclear” classifications.</p>
+          </aside>
+          <div className="hero-primer">
+            <span><b>01</b> One point per paper</span>
+            <span><b>02</b> Proximity reflects language</span>
+            <span><b>03</b> Six analytical lenses</span>
           </div>
-          <a className="scroll-cue" href="#explore">Begin exploring <ArrowDown size={15} /></a>
         </section>
 
         <section className="explorer-section" id="explore">
@@ -140,8 +147,8 @@ export default function App() {
       </main>
 
       <footer>
-        <div><Orbit size={22} /><strong>EARTH / AI</strong></div>
-        <p>An open-source experiment in making scientific language visible.</p>
+        <div><strong>EARTH AI ATLAS</strong><span>Open-source research visualization</span></div>
+        <p>Designed and built by Kavya Agarwal.</p>
         <span>{summary.demo ? 'Demo data · No scientific conclusions implied' : `OpenAlex snapshot · ${summary.generatedAt}`}</span>
       </footer>
       <PaperDetails paper={selectedPaper} onClose={() => setSelectedPaper(null)} />
