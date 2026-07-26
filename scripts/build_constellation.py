@@ -5,7 +5,6 @@ from __future__ import annotations
 
 import argparse
 import json
-from collections import Counter
 from datetime import date
 from pathlib import Path
 
@@ -24,7 +23,21 @@ def name_clusters(texts: list[str], labels: np.ndarray, count: int) -> dict[int,
     for label in range(count):
         rows = np.where(labels == label)[0]
         scores = np.asarray(matrix[rows].mean(axis=0)).ravel()
-        names[label] = " · ".join(terms[scores.argsort()[-2:][::-1]]).title()
+        ranked = [terms[index] for index in scores.argsort()[-20:][::-1]]
+        top = ranked[:8]
+        ordered = sorted(
+            top,
+            key=lambda term: (scores[np.where(terms == term)[0][0]] * (1.12 if " " in term else 1)),
+            reverse=True,
+        )
+        chosen: list[str] = []
+        for term in ordered + ranked[8:]:
+            if any(term in existing or existing in term for existing in chosen):
+                continue
+            chosen.append(term)
+            if len(chosen) == 2:
+                break
+        names[label] = " / ".join(chosen).title()
     return names
 
 
@@ -53,13 +66,32 @@ def main() -> None:
             "confidence": paper["confidence"], "evidence": paper["evidence"]["method"],
             "x": round(float(x[index]), 3), "y": round(float(y[index]), 3),
             "cluster": names[int(labels[index])], "url": paper.get("url") or paper["id"], "demo": False,
+            "doi": paper.get("doi"), "venue": paper.get("venue"),
+            "citationCount": paper.get("cited_by_count", 0),
+            "topics": paper.get("topics", []), "openAlexId": paper["id"],
+            "automaticallyClassified": paper.get("automaticallyClassified", True),
+            "methodImplemented": paper.get("methodImplemented", False),
         })
     clusters = []
     for label, name in names.items():
         rows = np.where(labels == label)[0]
         clusters.append({"name": name, "x": round(float(x[rows].mean()), 3), "y": round(float(y[rows].mean()), 3)})
     years = [paper["year"] for paper in exported if paper.get("year")]
-    summary = {"demo": False, "generatedAt": date.today().isoformat(), "paperCount": len(exported), "yearRange": [min(years), max(years)]}
+    domain_counts = {
+        domain: sum(paper["domain"] == domain for paper in exported)
+        for domain in sorted({paper["domain"] for paper in exported})
+    }
+    summary = {
+        "demo": False,
+        "generatedAt": date.today().isoformat(),
+        "paperCount": len(exported),
+        "yearRange": [min(years), max(years)],
+        "source": "OpenAlex",
+        "classifierVersion": "rules-v2",
+        "embeddingModel": args.model,
+        "layoutSeed": args.seed,
+        "domainCounts": domain_counts,
+    }
     args.output_dir.mkdir(parents=True, exist_ok=True)
     for filename, payload in [("papers.json", exported), ("clusters.json", clusters), ("summary.json", summary)]:
         (args.output_dir / filename).write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

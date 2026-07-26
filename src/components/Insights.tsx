@@ -38,9 +38,9 @@ export function Insights({ papers }: { papers: Paper[] }) {
       <div className="section-intro">
         <div>
           <p className="eyebrow">READ THE LANDSCAPE</p>
-          <h2>Signals in the demo corpus</h2>
+          <h2>Signals in the corpus</h2>
         </div>
-        <p>Descriptive summaries of the current selection. Counts and percentages update with the same {papers.length}-paper demo corpus shown above.</p>
+        <p>Descriptive summaries of the current selection. Counts and percentages use the same {papers.length}-paper corpus shown above.</p>
       </div>
       <div className="insight-grid">
         <article className="chart-card chart-wide">
@@ -59,7 +59,7 @@ export function Insights({ papers }: { papers: Paper[] }) {
           <span>Taxonomy watch</span>
           <strong>{percent(data.unclear, papers.length)}</strong>
           <h3>of papers have an unclear or unimplemented AI method</h3>
-          <p>{data.unclear} of {papers.length} demo records. A useful reminder that “AI” can be rhetoric as well as method.</p>
+          <p>{data.unclear} of {papers.length} records. A useful reminder that “AI” can be rhetoric as well as method.</p>
           <a href="#methodology">How labels work <ArrowUpRight size={14} /></a>
         </article>
         <article className="chart-card">

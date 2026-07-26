@@ -4,7 +4,7 @@
 
 [![Deploy to GitHub Pages](https://github.com/KavyaAgarwal2001/Earth-AI-constellation/actions/workflows/deploy.yml/badge.svg)](https://github.com/KavyaAgarwal2001/Earth-AI-constellation/actions/workflows/deploy.yml)
 
-> **Demo status:** the repository currently ships with 108 clearly marked synthetic paper records. They are for interface development only and support no scientific conclusions.
+> **Data release:** the repository currently ships with 1,172 selected OpenAlex papers published from 2015–2026. Labels are generated automatically from titles and abstracts and should be treated as exploratory, not ground truth.
 
 > **Screenshot placeholder:** add a capture of the deployed constellation here before launch.
 
@@ -26,7 +26,7 @@ This project maps a selected corpus of Earth and planetary science papers by sem
 - Interactive summary charts with counts and percentages
 - Loading, empty, and error states
 - Responsive dark, scientific visual design
-- Reproducible synthetic dataset and real OpenAlex processing pipeline
+- Reproducible OpenAlex dataset with a synthetic fallback generator
 - Fully static GitHub Pages deployment
 
 ## Technology
@@ -43,7 +43,6 @@ Requires Node.js 20+ and Python 3.10+.
 
 ```bash
 npm install
-npm run generate:demo
 npm run dev
 ```
 
@@ -58,7 +57,7 @@ npm run build
 npm run preview
 ```
 
-## Demo data
+## Optional demo data
 
 Regenerate the same 108 deterministic synthetic records at any time:
 
@@ -66,7 +65,7 @@ Regenerate the same 108 deterministic synthetic records at any time:
 npm run generate:demo
 ```
 
-The generator writes `papers.json`, `clusters.json`, and `summary.json` to `public/data/`. It includes representative examples such as CNN segmentation, random forests, transformers, PINNs, neural operators, reinforcement learning, geophysical inversion, Mars crater detection, remote-sensing foundation models, unclear “AI” claims, and an agent-based model that is not mislabeled as an AI agent.
+The generator replaces the real release files in `public/data/` with invented interface-testing records. Re-run the real pipeline afterward to restore the OpenAlex corpus.
 
 ## Build a real corpus
 
@@ -78,10 +77,11 @@ source .venv/bin/activate
 pip install -r scripts/requirements.txt
 ```
 
-Optionally identify yourself to the OpenAlex polite pool:
+OpenAlex requires a free API key for every request. Create one at
+`https://openalex.org/settings/api`, then save it in the gitignored `.env` file:
 
 ```bash
-export OPENALEX_MAILTO="you@example.org"
+OPENALEX_API_KEY="your-free-key"
 ```
 
 Fetch a manageable selected corpus, classify it, and build the semantic map:
@@ -92,7 +92,7 @@ python scripts/classify_papers.py
 python scripts/build_constellation.py
 ```
 
-The fetcher caches per-domain responses and deduplicates OpenAlex IDs. The classifier uses inspectable patterns and saves labels, confidence, evidence, and whether each classification was automatic. The final script creates sentence-transformer embeddings, uses seeded UMAP for a reproducible two-dimensional projection, creates lightweight cluster names, and replaces the demo files in `public/data/`.
+The fetcher uses 30 documented search queries, caches responses, deduplicates OpenAlex IDs, applies title-weighted Earth-domain relevance checks, and balances the selected corpus. The classifier uses inspectable patterns and saves labels, confidence, evidence, and whether each classification was automatic. The final script creates sentence-transformer embeddings, uses seeded UMAP for a reproducible two-dimensional projection, creates lightweight cluster names, and exports the website files to `public/data/`.
 
 Review automated classifications before presenting the corpus as research output.
 
@@ -124,8 +124,7 @@ See [methodology.md](methodology.md) for pattern behavior, confidence semantics,
 
 ## Limitations
 
-- The included dataset is synthetic.
-- A generated real corpus is selected, not exhaustive.
+- The included OpenAlex corpus is selected, not exhaustive.
 - OpenAlex abstracts can be absent or incomplete.
 - Automated labels can be wrong; scientific fields overlap.
 - UMAP neighborhoods are approximate, not exact distances.
@@ -136,7 +135,7 @@ See [methodology.md](methodology.md) for pattern behavior, confidence semantics,
 
 ```text
 src/                    React interface and visualization
-public/data/            Static demo or processed paper JSON
+public/data/            Processed OpenAlex paper JSON
 scripts/                Collection, classification, and layout pipeline
 methodology.md          Detailed methodology and limitations
 .github/workflows/      GitHub Pages deployment

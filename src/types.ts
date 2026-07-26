@@ -17,6 +17,13 @@ export interface Paper {
   cluster: string
   url: string
   demo: boolean
+  doi?: string | null
+  venue?: string | null
+  citationCount?: number
+  topics?: string[]
+  openAlexId?: string
+  automaticallyClassified?: boolean
+  methodImplemented?: boolean
 }
 
 export interface Cluster {
@@ -30,6 +37,11 @@ export interface Summary {
   generatedAt: string
   paperCount: number
   yearRange: [number, number]
+  source?: string
+  classifierVersion?: string
+  embeddingModel?: string
+  layoutSeed?: number
+  domainCounts?: Record<string, number>
 }
 
 export interface Filters {

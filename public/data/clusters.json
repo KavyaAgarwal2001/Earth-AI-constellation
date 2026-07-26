@@ -1,32 +1,42 @@
 [
   {
-    "name": "Weather forecasting",
-    "x": -58,
-    "y": 43
+    "name": "Ocean / Sea",
+    "x": -16.653,
+    "y": 29.025
   },
   {
-    "name": "Satellite image segmentation",
-    "x": 20,
-    "y": 48
+    "name": "Precipitation / Climate",
+    "x": -39.581,
+    "y": 24.511
   },
   {
-    "name": "Coastal-change detection",
-    "x": 55,
-    "y": 11
+    "name": "Weather / Forecasting",
+    "x": -43.578,
+    "y": 13.045
   },
   {
-    "name": "Seismic-event classification",
-    "x": -48,
-    "y": -35
+    "name": "Inversion / Subsurface",
+    "x": 27.475,
+    "y": 46.024
   },
   {
-    "name": "Physical-model emulation",
-    "x": 2,
-    "y": -12
+    "name": "Land / Cover",
+    "x": -15.427,
+    "y": -30.823
   },
   {
-    "name": "Planetary geomorphology",
-    "x": 52,
-    "y": -43
+    "name": "Asteroid / Exoplanet",
+    "x": 50.996,
+    "y": -43.773
+  },
+  {
+    "name": "Earthquake / Seismic",
+    "x": 45.386,
+    "y": 31.219
+  },
+  {
+    "name": "Remote Sensing / Transformer",
+    "x": 10.956,
+    "y": -33.089
   }
 ]

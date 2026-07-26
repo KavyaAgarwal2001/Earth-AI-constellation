@@ -10,7 +10,7 @@ export const hexToRgb = (hex: string): RGB => {
 
 export const colorForPaper = (paper: Paper, mode: ColorMode): RGB => {
   if (mode === 'year') {
-    const t = Math.max(0, Math.min(1, (paper.year - 2015) / 10))
+    const t = Math.max(0, Math.min(1, (paper.year - 2015) / 11))
     return [Math.round(79 + 164 * t), Math.round(133 + 84 * t), Math.round(192 - 105 * t)]
   }
   if (mode === 'confidence') {

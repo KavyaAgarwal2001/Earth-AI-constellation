@@ -1,9 +1,20 @@
 {
-  "demo": true,
+  "demo": false,
   "generatedAt": "2026-07-25",
-  "paperCount": 108,
+  "paperCount": 1172,
   "yearRange": [
     2015,
-    2025
-  ]
+    2026
+  ],
+  "source": "OpenAlex",
+  "classifierVersion": "rules-v2",
+  "embeddingModel": "sentence-transformers/all-MiniLM-L6-v2",
+  "layoutSeed": 42,
+  "domainCounts": {
+    "Earth observation and remote sensing": 330,
+    "Oceans and coasts": 205,
+    "Planetary science": 137,
+    "Solid Earth and geophysics": 189,
+    "Weather and climate": 311
+  }
 }

@@ -14,7 +14,7 @@ export function Legend({ mode }: { mode: ColorMode }) {
       <div className="continuous-legend">
         <span>{mode === 'year' ? '2015' : 'Lower confidence'}</span>
         <i className={mode} />
-        <span>{mode === 'year' ? '2025' : 'Higher confidence'}</span>
+        <span>{mode === 'year' ? '2026' : 'Higher confidence'}</span>
       </div>
     )
   }

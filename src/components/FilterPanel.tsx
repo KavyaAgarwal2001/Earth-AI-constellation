@@ -7,6 +7,8 @@ interface Props {
   setFilters: (filters: Filters) => void
   visibleCount: number
   totalCount: number
+  yearRange: [number, number]
+  isDemo: boolean
   open: boolean
   onClose: () => void
 }
@@ -32,9 +34,9 @@ const MultiFilter = ({ label, options, selected, onChange }: { label: string; op
   </details>
 )
 
-export function FilterPanel({ filters, setFilters, visibleCount, totalCount, open, onClose }: Props) {
-  const reset = () => setFilters({ search: '', yearMin: 2015, yearMax: 2025, domains: [], methods: [], roles: [], physics: [] })
-  const active = filters.search || filters.yearMin !== 2015 || filters.yearMax !== 2025 || filters.domains.length || filters.methods.length || filters.roles.length || filters.physics.length
+export function FilterPanel({ filters, setFilters, visibleCount, totalCount, yearRange, isDemo, open, onClose }: Props) {
+  const reset = () => setFilters({ search: '', yearMin: yearRange[0], yearMax: yearRange[1], domains: [], methods: [], roles: [], physics: [] })
+  const active = filters.search || filters.yearMin !== yearRange[0] || filters.yearMax !== yearRange[1] || filters.domains.length || filters.methods.length || filters.roles.length || filters.physics.length
 
   return (
     <aside className={`filter-panel ${open ? 'open' : ''}`}>
@@ -44,7 +46,7 @@ export function FilterPanel({ filters, setFilters, visibleCount, totalCount, ope
       </div>
       <div className="visible-count">
         <strong>{visibleCount}</strong>
-        <span>of {totalCount} demo papers visible</span>
+        <span>of {totalCount} {isDemo ? 'demo ' : ''}papers visible</span>
       </div>
       <label className="search-box">
         <Search size={16} />
@@ -58,8 +60,8 @@ export function FilterPanel({ filters, setFilters, visibleCount, totalCount, ope
       </label>
       <div className="year-filter">
         <div><span>Publication year</span><strong>{filters.yearMin}–{filters.yearMax}</strong></div>
-        <label>From <input type="range" min="2015" max="2025" value={filters.yearMin} onChange={(e) => setFilters({ ...filters, yearMin: Math.min(Number(e.target.value), filters.yearMax) })} /></label>
-        <label>To <input type="range" min="2015" max="2025" value={filters.yearMax} onChange={(e) => setFilters({ ...filters, yearMax: Math.max(Number(e.target.value), filters.yearMin) })} /></label>
+        <label>From <input type="range" min={yearRange[0]} max={yearRange[1]} value={filters.yearMin} onChange={(e) => setFilters({ ...filters, yearMin: Math.min(Number(e.target.value), filters.yearMax) })} /></label>
+        <label>To <input type="range" min={yearRange[0]} max={yearRange[1]} value={filters.yearMax} onChange={(e) => setFilters({ ...filters, yearMax: Math.max(Number(e.target.value), filters.yearMin) })} /></label>
       </div>
       <div className="filter-list">
         <MultiFilter label="Scientific domain" options={DOMAINS} selected={filters.domains} onChange={(domains) => setFilters({ ...filters, domains })} />
