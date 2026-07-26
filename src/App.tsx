@@ -55,7 +55,7 @@ export default function App() {
           <a href="#insights">Insights</a>
           <a href="#methodology">Methodology</a>
         </nav>
-        <a className="github-link" href="https://github.com/" target="_blank" rel="noreferrer"><Github size={16} /> View source</a>
+        <a className="github-link" href="https://github.com/KavyaAgarwal2001/Earth-AI-constellation" target="_blank" rel="noreferrer"><Github size={16} /> View source</a>
       </header>
 
       <main id="top">

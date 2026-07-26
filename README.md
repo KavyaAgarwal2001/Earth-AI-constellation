@@ -2,13 +2,13 @@
 
 ### An interactive constellation of AI across Earth and planetary research
 
-[![Deploy to GitHub Pages](https://github.com/OWNER/earth-ai-constellation/actions/workflows/deploy.yml/badge.svg)](https://github.com/OWNER/earth-ai-constellation/actions/workflows/deploy.yml)
+[![Deploy to GitHub Pages](https://github.com/KavyaAgarwal2001/Earth-AI-constellation/actions/workflows/deploy.yml/badge.svg)](https://github.com/KavyaAgarwal2001/Earth-AI-constellation/actions/workflows/deploy.yml)
 
 > **Demo status:** the repository currently ships with 108 clearly marked synthetic paper records. They are for interface development only and support no scientific conclusions.
 
 > **Screenshot placeholder:** add a capture of the deployed constellation here before launch.
 
-**Live site:** `https://OWNER.github.io/earth-ai-constellation/` (replace `OWNER` after publishing)
+**Live site:** `https://kavyaagarwal2001.github.io/Earth-AI-constellation/`
 
 ## Research question
 
@@ -48,6 +48,8 @@ npm run dev
 ```
 
 Open the local URL printed by Vite.
+
+Do not double-click the source `index.html` file. Vite applications load JavaScript modules and JSON over HTTP, so opening the file with a `file://` URL cannot run the application.
 
 To verify a production build:
 
@@ -96,22 +98,16 @@ Review automated classifications before presenting the corpus as research output
 
 ## GitHub Pages deployment
 
-One setting controls the repository base path. In `.github/workflows/deploy.yml`, change:
-
-```yaml
-VITE_REPOSITORY_NAME: earth-ai-constellation
-```
-
-to the exact GitHub repository name.
+The deployment workflow reads the repository name automatically and passes it to Vite as the GitHub Pages base path. This preserves capitalization and avoids broken asset URLs.
 
 Then:
 
-1. Create a GitHub repository and push this project to its `main` branch.
+1. Push this project to the `main` branch of `KavyaAgarwal2001/Earth-AI-constellation`.
 2. In the repository, open **Settings → Pages**.
 3. Under **Build and deployment**, choose **GitHub Actions** as the source.
 4. Push to `main` or run the workflow manually from the **Actions** tab.
 
-The workflow installs dependencies, builds with the repository base path, uploads `dist/`, and deploys it through GitHub Pages. Application assets and JSON fetch paths use Vite’s base URL, so they work both locally and under `https://OWNER.github.io/REPOSITORY/`.
+The workflow installs dependencies, builds with the repository base path, uploads `dist/`, and deploys it through GitHub Pages. Application assets and JSON fetch paths use Vite’s base URL, so they work both locally and under `https://kavyaagarwal2001.github.io/Earth-AI-constellation/`.
 
 ## Data methodology
 

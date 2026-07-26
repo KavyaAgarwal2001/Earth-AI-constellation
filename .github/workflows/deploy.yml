@@ -27,7 +27,7 @@ jobs:
       - name: Build static site
         run: npm run build
         env:
-          VITE_REPOSITORY_NAME: earth-ai-constellation
+          VITE_REPOSITORY_NAME: ${{ github.event.repository.name }}
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
